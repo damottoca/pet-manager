@@ -20,4 +20,8 @@ class ServicoService(
 
         println("Serviço cadastrado com sucesso!")
     }
+
+    fun listar(): List<Servico> {
+        return servicoDAO.listar()
+    }
 }

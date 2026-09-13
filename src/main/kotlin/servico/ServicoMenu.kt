@@ -1,7 +1,5 @@
 package servico
 
-import java.math.BigDecimal
-
 class ServicoMenu(
     private val servicoService: ServicoService
 ) {
@@ -14,7 +12,8 @@ class ServicoMenu(
 
             println()
             println("====== SERVIÇOS ======")
-            println("1 - Cadastrar serviço")
+            println("1 - Listar serviços")
+            println("2 - Cadastrar serviço")
             println("0 - Voltar")
             println()
 
@@ -22,7 +21,9 @@ class ServicoMenu(
 
             when (readln()) {
 
-                "1" -> cadastrar()
+                "1" -> listar()
+
+                "2" -> cadastrar()
 
                 "0" -> {
                     println("Voltando...")
@@ -31,6 +32,26 @@ class ServicoMenu(
 
                 else -> println("Opção inválida!")
             }
+        }
+    }
+
+    private fun listar() {
+
+        val servicos = servicoService.listar()
+
+        println()
+        println("====== SERVIÇOS CADASTRADOS ======")
+
+        if (servicos.isEmpty()) {
+            println("Nenhum serviço cadastrado.")
+            return
+        }
+
+        for (servico in servicos) {
+            println(
+                "${servico.id} - ${servico.nome} - " +
+                        "${servico.descricao} - R$ ${servico.preco}"
+            )
         }
     }
 
