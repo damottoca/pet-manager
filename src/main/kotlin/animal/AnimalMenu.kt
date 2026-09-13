@@ -14,15 +14,22 @@ class AnimalMenu(
             println("====== ANIMAIS ======")
             println("1 - Listar animais")
             println("2 - Cadastrar animal")
+            println("3 - Atualizar animal")
+            println("4 - Excluir animal")
             println("0 - Voltar")
             println()
 
             print("Escolha uma opção: ")
 
             when (readln()) {
+
                 "1" -> listar()
 
                 "2" -> cadastrar()
+
+                "3" -> atualizar()
+
+                "4" -> excluir()
 
                 "0" -> {
                     println("Voltando...")
@@ -89,5 +96,72 @@ class AnimalMenu(
 
         animalService.cadastrar(animal)
     }
-}
 
+    private fun atualizar() {
+
+        println()
+        println("====== ATUALIZAR ANIMAL ======")
+
+        print("ID do animal: ")
+        val id = readln().toIntOrNull()
+
+        if (id == null) {
+            println("ID inválido.")
+            return
+        }
+
+        print("Novo nome: ")
+        val nome = readln()
+
+        print("Nova espécie: ")
+        val especie = readln()
+
+        print("Nova raça: ")
+        val raca = readln()
+
+        print("Nova idade: ")
+        val idade = readln().toIntOrNull()
+
+        print("Novo ID do cliente responsável: ")
+        val clienteId = readln().toIntOrNull()
+
+        if (clienteId == null) {
+            println("ID do cliente inválido.")
+            return
+        }
+
+        val animal = Animal(
+            id = id,
+            nome = nome,
+            especie = especie,
+            raca = raca,
+            idade = idade,
+            clienteId = clienteId
+        )
+
+        animalService.atualizar(animal)
+    }
+
+    private fun excluir() {
+
+        println()
+        println("====== EXCLUIR ANIMAL ======")
+
+        print("ID do animal: ")
+        val id = readln().toIntOrNull()
+
+        if (id == null) {
+            println("ID inválido.")
+            return
+        }
+
+        print("Tem certeza que deseja excluir este animal? (s/n): ")
+        val confirmacao = readln()
+
+        if (confirmacao.lowercase() == "s") {
+            animalService.excluir(id)
+        } else {
+            println("Exclusão cancelada.")
+        }
+    }
+}

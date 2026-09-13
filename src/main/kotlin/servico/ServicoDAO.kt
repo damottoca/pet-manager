@@ -52,4 +52,36 @@ class ServicoDAO(
         return servicos
     }
 
+    fun atualizar(servico: Servico) {
+
+        val sql = """
+            UPDATE servico
+            SET nome = ?, descricao = ?, preco = ?
+            WHERE id = ?
+        """.trimIndent()
+
+        val statement = conexao.prepareStatement(sql)
+
+        statement.setString(1, servico.nome)
+        statement.setString(2, servico.descricao)
+        statement.setBigDecimal(3, servico.preco)
+        statement.setInt(4, servico.id!!)
+
+        statement.executeUpdate()
+
+        statement.close()
+    }
+    fun excluir(id: Int) {
+
+        val sql = "DELETE FROM servico WHERE id = ?"
+
+        val statement = conexao.prepareStatement(sql)
+
+        statement.setInt(1, id)
+
+        statement.executeUpdate()
+
+        statement.close()
+    }
+
 }

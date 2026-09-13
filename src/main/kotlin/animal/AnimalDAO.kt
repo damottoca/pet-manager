@@ -55,4 +55,39 @@ class AnimalDAO(
 
         return animais
     }
+
+    fun atualizar(animal: Animal) {
+
+        val sql = """
+        UPDATE animal
+        SET nome = ?, especie = ?, raca = ?, idade = ?, cliente_id = ?
+        WHERE id = ?
+    """.trimIndent()
+
+        val statement = conexao.prepareStatement(sql)
+
+        statement.setString(1, animal.nome)
+        statement.setString(2, animal.especie)
+        statement.setString(3, animal.raca)
+        statement.setObject(4, animal.idade)
+        statement.setInt(5, animal.clienteId)
+        statement.setInt(6, animal.id!!)
+
+        statement.executeUpdate()
+
+        statement.close()
+    }
+
+    fun excluir(id: Int) {
+
+        val sql = "DELETE FROM animal WHERE id = ?"
+
+        val statement = conexao.prepareStatement(sql)
+
+        statement.setInt(1, id)
+
+        statement.executeUpdate()
+
+        statement.close()
+    }
 }
