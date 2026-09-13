@@ -24,4 +24,32 @@ class ServicoDAO(
 
         statement.close()
     }
+
+    fun listar(): List<Servico> {
+
+        val sql = "SELECT * FROM servico"
+
+        val statement = conexao.prepareStatement(sql)
+        val resultado = statement.executeQuery()
+
+        val servicos = mutableListOf<Servico>()
+
+        while (resultado.next()) {
+
+            val servico = Servico(
+                id = resultado.getInt("id"),
+                nome = resultado.getString("nome"),
+                descricao = resultado.getString("descricao"),
+                preco = resultado.getBigDecimal("preco")
+            )
+
+            servicos.add(servico)
+        }
+
+        resultado.close()
+        statement.close()
+
+        return servicos
+    }
+
 }
