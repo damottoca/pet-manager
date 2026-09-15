@@ -59,10 +59,10 @@ class AnimalDAO(
     fun atualizar(animal: Animal) {
 
         val sql = """
-        UPDATE animal
-        SET nome = ?, especie = ?, raca = ?, idade = ?, cliente_id = ?
-        WHERE id = ?
-    """.trimIndent()
+            UPDATE animal
+            SET nome = ?, especie = ?, raca = ?, idade = ?, cliente_id = ?
+            WHERE id = ?
+        """.trimIndent()
 
         val statement = conexao.prepareStatement(sql)
 

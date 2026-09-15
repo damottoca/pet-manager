@@ -1,5 +1,7 @@
 package cliente
 
+import pessoa.Pessoa
+
 class ClienteMenu(
     private val clienteService: ClienteService
 ) {
@@ -53,8 +55,15 @@ class ClienteMenu(
         }
 
         for (cliente in clientes) {
+
+            val pessoa: Pessoa = cliente
+
             println(
-                "${cliente.id} - ${cliente.nome} - ${cliente.telefone} - ${cliente.email}"
+                "${pessoa.tipoPessoa()} - " +
+                        "${cliente.id} - " +
+                        "${cliente.nome} - " +
+                        "${cliente.telefone} - " +
+                        "${cliente.email}"
             )
         }
     }

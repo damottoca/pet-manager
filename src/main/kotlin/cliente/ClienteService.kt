@@ -1,5 +1,7 @@
 package cliente
 
+import utils.ValidacaoUtils
+
 class ClienteService(
     private val clienteDAO: ClienteDAO
 ) {
@@ -11,12 +13,23 @@ class ClienteService(
             return
         }
 
+        if (!ValidacaoUtils.emailValido(cliente.email ?: "")) {
+            println("E-mail inválido.")
+            return
+        }
+
+        if (!ValidacaoUtils.telefoneValido(cliente.telefone ?: "")) {
+            println("Telefone inválido.")
+            return
+        }
+
         clienteDAO.cadastrar(cliente)
 
         println("Cliente cadastrado com sucesso!")
     }
 
     fun listar(): List<Cliente> {
+
         return clienteDAO.listar()
     }
 
@@ -29,6 +42,16 @@ class ClienteService(
 
         if (cliente.nome.isBlank()) {
             println("O nome do cliente não pode ficar vazio.")
+            return
+        }
+
+        if (!ValidacaoUtils.emailValido(cliente.email ?: "")) {
+            println("E-mail inválido.")
+            return
+        }
+
+        if (!ValidacaoUtils.telefoneValido(cliente.telefone ?: "")) {
+            println("Telefone inválido.")
             return
         }
 
