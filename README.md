@@ -19,9 +19,16 @@ O projeto foi desenvolvido como forma de praticar programação orientada a obje
 - Cadastro, consulta, atualização e exclusão de animais
 - Cadastro, consulta, atualização e exclusão de serviços
 - Cadastro, consulta, atualização e exclusão de funcionários
+- Organização dos funcionários por setores
 - Cadastro, consulta, atualização e exclusão de agendamentos
 - Relacionamento entre animais e seus responsáveis
-- Consulta de agendamentos com informações de animal, serviço e funcionário
+- Cadastro de vendas com um ou mais serviços
+- Cálculo automático do total da venda
+- Controle de entradas e saídas do caixa
+- Registro de pagador, recebedor, data/hora, descrição e responsável pela movimentação
+- Auditoria das movimentações financeiras
+- Validação de dados utilizando REGEX, nullable e tratamento de exceções
+- Transações no banco de dados para manter a consistência das operações
 
 ## 🗂️ Estrutura
 
